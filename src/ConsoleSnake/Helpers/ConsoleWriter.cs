@@ -7,18 +7,25 @@ namespace ConsoleSnake.Engine
     {
         public static void ConfigureConsole()
         {
-            Console.SetBufferSize(Constants.ConsoleWidth, Constants.ConsoleHeight);
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("Press enter to start the game!");
-            Console.ResetColor();
-            Console.ReadLine();
+            Console.SetWindowSize(Constants.ConsoleWidth,Constants.ConsoleHeight);
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.SetCursorPosition(Constants.GameOverCursorPositionX, Constants.GameOverCursorPositionY);
+            Console.WriteLine("Press any key to start the game!");
+            Console.CursorVisible = false;
+            Console.ReadKey();
+            Console.Clear();
+            Console.Beep();
         }
 
-        static void WriteGameOver()
+        public static void WriteGameOver()
         {
+            Console.Clear();
             Console.SetCursorPosition(Constants.GameOverCursorPositionX, Constants.GameOverCursorPositionY);
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("You lost . Press enter to quit the game.");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("You lost . Press any key to quit the game.");
+            Console.ReadKey();
+            Environment.Exit(0);
         }
 
         //TODO: Implement score

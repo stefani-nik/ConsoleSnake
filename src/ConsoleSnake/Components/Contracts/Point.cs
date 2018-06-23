@@ -3,7 +3,7 @@ using System;
 
 namespace ConsoleSnake.Components.Contracts
 {
-    class Point
+    public class Point
     {
         public int x;
         public int y;

@@ -34,7 +34,7 @@ namespace ConsoleSnake.Components
 
         public Point GetNextPoint()
         {
-            Point head = PointsToDraw[PointsToDraw.Capacity - 1];
+            Point head = PointsToDraw[PointsToDraw.Count - 1];
             Point nextPoint = new Point(head);
             nextPoint.Move(1, direction);
             return nextPoint;
@@ -42,7 +42,7 @@ namespace ConsoleSnake.Components
 
         internal bool IsHitTail()
         {
-            var head = PointsToDraw[PointsToDraw.Capacity - 1];
+            var head = PointsToDraw[PointsToDraw.Count - 1];
 
             for (int i = 0; i < PointsToDraw.Count - 2; i++)
             {

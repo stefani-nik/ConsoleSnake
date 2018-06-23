@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleSnake.Engine;
+using System;
 
 namespace ConsoleSnake
 {
@@ -6,7 +7,7 @@ namespace ConsoleSnake
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Game.Play();
         }
     }
 }
