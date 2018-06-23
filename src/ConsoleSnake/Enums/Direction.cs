@@ -1,6 +1,6 @@
 ﻿namespace ConsoleSnake.Enums
 {
-    enum Direction
+    public enum Direction
     {
         LEFT,
         RIGHT,

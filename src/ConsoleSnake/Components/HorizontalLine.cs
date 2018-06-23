@@ -4,5 +4,6 @@ namespace ConsoleSnake.Components
 {
     class HorizontalLine : Line
     {
+
     }
 }
