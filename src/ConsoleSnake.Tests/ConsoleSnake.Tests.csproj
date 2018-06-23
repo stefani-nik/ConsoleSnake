@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\ConsoleSnake\ConsoleSnake.csproj" />
+    <ProjectReference Include="..\ConsoleSnake\ConsoleSnake.csproj" />
   </ItemGroup>
 
 </Project>

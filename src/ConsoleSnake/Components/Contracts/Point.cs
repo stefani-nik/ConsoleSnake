@@ -1,7 +1,5 @@
 ﻿using ConsoleSnake.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ConsoleSnake.Components.Contracts
 {
