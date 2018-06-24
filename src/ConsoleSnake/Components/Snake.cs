@@ -15,44 +15,37 @@ namespace ConsoleSnake.Components
 
         public static Snake Instance { get => instance.Value; }
 
+        public Point Head { get; set; } = new Point(Constants.SnakeStartPointX, Constants.SnakeStartPointY, Constants.SnakeSymbol);
+
+        public Point Tail { get => this.PointsToDraw[0]; private set { } }
+
+        public Direction Direction { get => this._direction; set => this._direction = value; }
+
         private Snake()
         {
             this.PointsToDraw = new List<Point>();
 
             for (int i = 0; i < Constants.SnakeInitialLength; i++)
             {
-                Point p = new Point(Constants.SnakeStartPointX, Constants.SnakeStartPointY, Constants.SnakeSymbol);
-                p.Move(i, _direction);
-                PointsToDraw.Add(p);
+                PointsToDraw.Add(new Point(this.Head));
+                this.Head.Move(1, _direction);            
             }
         }
 
         internal void Move()
         {
-            Point tail = PointsToDraw[0];
-            PointsToDraw.Remove(tail);
-            Point head = GetNextPoint();
-            PointsToDraw.Add(head);
-
-            tail.Clear();
-            head.Draw();
+            this.Tail.Clear();
+            this.PointsToDraw.Remove(this.Tail);
+            this.PointsToDraw.Add(new Point(this.Head));
+            this.Head.Draw();
+            this.Head.Move(1, _direction);
         }
 
-        public Point GetNextPoint()
-        {
-            Point head = PointsToDraw[PointsToDraw.Count - 1];
-            Point nextPoint = new Point(head);
-            nextPoint.Move(1, _direction);
-            return nextPoint;
-        }
-
-        internal bool IsHitTail()
-        {
-            var head = PointsToDraw[PointsToDraw.Count - 1];
-
+        public bool IsHitTail()
+        { 
             for (int i = 0; i < PointsToDraw.Count - 2; i++)
             {
-                if (head.IsHit(PointsToDraw[i]))
+                if (this.Head.IsHit(PointsToDraw[i]))
                 {
                     return true;
                 }
@@ -60,33 +53,13 @@ namespace ConsoleSnake.Components
             return false;
         }
 
-        public void HandleKey(ConsoleKey key)
-        {
-            if (key == ConsoleKey.LeftArrow)
-            {
-                this._direction = Direction.LEFT;
-            }
-            else if (key == ConsoleKey.RightArrow)
-            {
-                this._direction = Direction.RIGHT;
-            }
-            else if (key == ConsoleKey.DownArrow)
-            {
-                this._direction = Direction.DOWN;
-            }
-            else if (key == ConsoleKey.UpArrow)
-            {
-                this._direction = Direction.UP;
-            }
-        }
-
         internal bool Eat(Point food)
         {
-            Point head = GetNextPoint();
-            if (head.IsHit(food))
+
+            if (this.Head.IsHit(food))
             {
-                food.sym = head.sym;
-                PointsToDraw.Add(food);
+                PointsToDraw.Add(new Point(this.Head));
+                this.Head.Move(1, _direction);
                 return true;
             }
             else

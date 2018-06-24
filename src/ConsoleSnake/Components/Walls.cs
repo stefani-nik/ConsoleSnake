@@ -30,5 +30,19 @@ namespace ConsoleSnake.Components
             this._walls.ForEach(w => w.DrawFigure());
         }
 
+        public bool IsHit(Point withPoint)
+        {
+            bool isHit = false;
+            this._walls.ForEach(w =>
+            {
+                w.PointsToDraw.ForEach(p => {
+                    if (p.IsHit(withPoint))
+                        isHit = true;
+                });
+            });
+
+            return isHit;
+        }
+
     }
 }

@@ -1,6 +1,5 @@
 ﻿using ConsoleSnake.Components;
 using ConsoleSnake.Components.Contracts;
-using ConsoleSnake.Enums;
 using ConsoleSnake.Helpers;
 using System;
 using System.Threading;
@@ -13,27 +12,27 @@ namespace ConsoleSnake.Engine
         {
             ConsoleWriter.ConfigureConsole();
 
+            InputHandler inputHandler = new InputHandler();
+
             Snake snake = Snake.Instance;
             snake.DrawFigure();
 
             Walls walls = Walls.Instance;
             walls.DrawWalls();
 
-            FoodCreator foodCreator = new FoodCreator(80, 25, Constants.FoodSymbol);
-            Point food = foodCreator.CreateFood();
+            Point food = FoodCreator.CreateFood();
             food.Draw();
 
             while (true)
             {
-                if (snake.IsHitTail())//|| walls.IsHit(snake))
+                if (snake.IsHitTail() || walls.IsHit(snake.Head))
                 {
-
                     break;
                 }
 
                 if (snake.Eat(food))
                 {
-                    food = foodCreator.CreateFood();
+                    food = FoodCreator.CreateFood();
                     food.Draw();
                 }
                 else
@@ -45,8 +44,7 @@ namespace ConsoleSnake.Engine
 
                 if (Console.KeyAvailable)
                 {
-                    ConsoleKeyInfo key = Console.ReadKey();
-                    snake.HandleKey(key.Key);
+                    inputHandler.GetKeyDirection(Console.ReadKey().Key);
                 }
             }
 

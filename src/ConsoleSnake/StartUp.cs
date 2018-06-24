@@ -1,5 +1,4 @@
 ﻿using ConsoleSnake.Engine;
-using System;
 
 namespace ConsoleSnake
 {

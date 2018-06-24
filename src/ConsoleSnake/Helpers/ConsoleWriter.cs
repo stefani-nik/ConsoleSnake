@@ -28,7 +28,5 @@ namespace ConsoleSnake.Engine
             Environment.Exit(0);
         }
 
-        //TODO: Implement score
-
     }
 }
