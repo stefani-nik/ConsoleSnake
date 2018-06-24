@@ -1,6 +1,4 @@
-﻿
-
-using ConsoleSnake.Components;
+﻿using ConsoleSnake.Components;
 using ConsoleSnake.Components.Contracts;
 using ConsoleSnake.Enums;
 using ConsoleSnake.Helpers;
@@ -15,20 +13,11 @@ namespace ConsoleSnake.Engine
         {
             ConsoleWriter.ConfigureConsole();
 
-            Line upLine = new Line(0, Constants.ConsoleWidth - 2, 0, '-', "horizontal");
-            Line downLine = new Line(0, Constants.ConsoleWidth - 2, Constants.ConsoleHeight - 1, '-', "horizontal");
-            Line leftLine = new Line(0, Constants.ConsoleHeight - 1, 0 , '|', "vertical");
-            Line rightLine = new Line(0, Constants.ConsoleHeight - 1, Constants.ConsoleWidth - 2, '|', "vertical");
-
-            upLine.DrawFigure();
-            downLine.DrawFigure();
-            leftLine.DrawFigure();
-            rightLine.DrawFigure();
-
-
-            Point startPoint = new Point(Constants.SnakeStartPointX, Constants.SnakeStartPointY, Constants.SnakeSymbol);
-            Snake snake = new Snake(startPoint, 5, Direction.RIGHT);
+            Snake snake = Snake.Instance;
             snake.DrawFigure();
+
+            Walls walls = Walls.Instance;
+            walls.DrawWalls();
 
             FoodCreator foodCreator = new FoodCreator(80, 25, Constants.FoodSymbol);
             Point food = foodCreator.CreateFood();
@@ -36,7 +25,7 @@ namespace ConsoleSnake.Engine
 
             while (true)
             {
-                if (snake.IsHitTail())  //walls.IsHit(snake) || 
+                if (snake.IsHitTail())//|| walls.IsHit(snake))
                 {
 
                     break;

@@ -10,5 +10,6 @@
         public const int GameOverCursorPositionY = 12;
         public const int SnakeStartPointX = 4;
         public const int SnakeStartPointY = 6;
+        public const int SnakeInitialLength = 5;
     }
 }

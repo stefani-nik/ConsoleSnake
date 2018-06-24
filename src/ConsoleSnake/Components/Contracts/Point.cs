@@ -65,9 +65,5 @@ namespace ConsoleSnake.Components.Contracts
             Draw();
         }
 
-        public override string ToString()
-        {
-            return x + ", " + y + ", " + sym;
-        }
     }
 }

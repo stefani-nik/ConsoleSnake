@@ -4,17 +4,14 @@ namespace ConsoleSnake.Components.Contracts
 {
     public abstract class Figure
     {
-        private List<Point> pointsToDraw;
+        private List<Point> _pointsToDraw;
 
-        internal List<Point> PointsToDraw { get => pointsToDraw; set => pointsToDraw = value; }
+        internal List<Point> PointsToDraw { get => _pointsToDraw; set => _pointsToDraw = value; }
 
 
         internal void DrawFigure()
         {
-            foreach(Point p in this.pointsToDraw)
-            {
-                p.Draw();
-            }
+            this._pointsToDraw.ForEach(p => p.Draw());
         }
     }
 }

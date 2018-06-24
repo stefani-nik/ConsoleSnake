@@ -1,22 +1,28 @@
 ﻿using ConsoleSnake.Components.Contracts;
 using ConsoleSnake.Enums;
+using ConsoleSnake.Helpers;
 using System;
 using System.Collections.Generic;
 
 namespace ConsoleSnake.Components
 {
-    class Snake : Figure
+    public sealed class Snake : Figure
     {
-        Direction direction;
+        private Direction _direction = Direction.RIGHT;
 
-        public Snake(Point tail, int lenght, Direction _direction)
+        private static readonly Lazy<Snake> instance =
+                        new Lazy<Snake>(() => new Snake());
+
+        public static Snake Instance { get => instance.Value; }
+
+        private Snake()
         {
-            direction = _direction;
-            PointsToDraw = new List<Point>();
-            for (int i = 0; i < lenght; i++)
+            this.PointsToDraw = new List<Point>();
+
+            for (int i = 0; i < Constants.SnakeInitialLength; i++)
             {
-                Point p = new Point(tail);
-                p.Move(i, direction);
+                Point p = new Point(Constants.SnakeStartPointX, Constants.SnakeStartPointY, Constants.SnakeSymbol);
+                p.Move(i, _direction);
                 PointsToDraw.Add(p);
             }
         }
@@ -36,7 +42,7 @@ namespace ConsoleSnake.Components
         {
             Point head = PointsToDraw[PointsToDraw.Count - 1];
             Point nextPoint = new Point(head);
-            nextPoint.Move(1, direction);
+            nextPoint.Move(1, _direction);
             return nextPoint;
         }
 
@@ -58,19 +64,19 @@ namespace ConsoleSnake.Components
         {
             if (key == ConsoleKey.LeftArrow)
             {
-                direction = Direction.LEFT;
+                this._direction = Direction.LEFT;
             }
             else if (key == ConsoleKey.RightArrow)
             {
-                direction = Direction.RIGHT;
+                this._direction = Direction.RIGHT;
             }
             else if (key == ConsoleKey.DownArrow)
             {
-                direction = Direction.DOWN;
+                this._direction = Direction.DOWN;
             }
             else if (key == ConsoleKey.UpArrow)
             {
-                direction = Direction.UP;
+                this._direction = Direction.UP;
             }
         }
 
