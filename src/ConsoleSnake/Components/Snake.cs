@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 namespace ConsoleSnake.Components
 {
-
+    /// <summary>
+    /// A singleton class which represents the Snake component
+    /// </summary>
     public sealed class Snake : Figure
     {
 
@@ -35,7 +37,10 @@ namespace ConsoleSnake.Components
                 this.NextMove.Invoke();  
             }  
         }
-
+        /// <summary>
+        /// Method responsible for moving the head of the snake to the next point 
+        /// depending on the direction and removing the tail of the snake
+        /// </summary>
         public void Move()
         {
             this.Tail.Clear();
@@ -50,13 +55,15 @@ namespace ConsoleSnake.Components
             }
             catch (IndexOutOfRangeException)
             {
-                throw new IndexOutOfRangeException("Trying to write on position out of the console");
+                throw new IndexOutOfRangeException("Trying to write on position out of the console.");
             }
            
             this.NextMove.Invoke();
 
         }
-
+        /// <summary>
+        /// Checks if the head of the snake had hit any of the other points of the snake 
+        /// </summary>
         public bool IsHitTail()
         { 
             for (int i = 0; i < PointsToDraw.Count - 2; i++)
@@ -69,6 +76,9 @@ namespace ConsoleSnake.Components
             return false;
         }
 
+        /// <summary>
+        /// Checks if the head of the snake had hit the current food point
+        /// </summary>
         public bool IsHitFood(Point food)
         {
 
@@ -84,6 +94,8 @@ namespace ConsoleSnake.Components
             return false;
              
         }
+
+        #region MovementMethods
 
         public void MoveUp()
         {
@@ -104,5 +116,7 @@ namespace ConsoleSnake.Components
         {
             this.Head.X++;
         }
+
+        #endregion
     }
 }

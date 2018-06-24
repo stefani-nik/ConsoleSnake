@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace ConsoleSnake.Components
 {
+    /// <summary>
+    /// A singleton class responsible for creating the four walls of the palayfield
+    /// </summary>
     public sealed class Walls
     {
         private List<Line> _walls;
@@ -29,6 +32,9 @@ namespace ConsoleSnake.Components
             this._walls.ForEach(w => w.Draw());
         }
 
+        /// <summary>
+        /// Checking if the point which is passed as a parameter is a hit with any of the walls 
+        /// </summary>
         public bool IsHit(Point withPoint)
         {
             bool isHit = false;

@@ -7,12 +7,18 @@ namespace ConsoleSnake.Components
 {
     public class Line : Figure
     {
+        /// <summary>
+        /// Holds a collection with all line strategies
+        /// </summary>
         private Dictionary<string, LineStrategy> lineStrategies = new Dictionary<string, LineStrategy>()
         {
             { "horizontal", new HorizontalLineStrategy() },
             { "vertical" , new  VerticalLineStrategy() }
         };
 
+        /// <summary>
+        /// Creates the line depending on the given strategy
+        /// </summary>      
         public Line(int startX, int endX, int y, char symbol, string lineStrategy)
         {
             this.PointsToDraw = new List<Point>();

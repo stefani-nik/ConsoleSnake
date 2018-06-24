@@ -1,5 +1,8 @@
 ﻿namespace ConsoleSnake.Helpers
 {
+    /// <summary>
+    /// Holds the constants needed to configure the game 
+    /// </summary>
     public static class Constants
     {
         public const char SnakeSymbol = '\u04e6';

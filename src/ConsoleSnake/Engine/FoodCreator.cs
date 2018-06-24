@@ -1,5 +1,4 @@
 ﻿using ConsoleSnake.Components;
-using ConsoleSnake.Components.Contracts;
 using ConsoleSnake.Helpers;
 using System;
 
@@ -7,6 +6,9 @@ namespace ConsoleSnake.Engine
 {
     public static class FoodCreator
     {
+        /// <summary>
+        /// Generates a Point on a random coordinates in the console window 
+        /// </summary>
         public static Point CreateFood()
         {
             Random random = new Random();

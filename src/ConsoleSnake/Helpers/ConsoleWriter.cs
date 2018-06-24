@@ -5,6 +5,9 @@ namespace ConsoleSnake.Engine
 {
     public static class ConsoleWriter
     {
+        /// <summary>
+        /// Called before starting the game for configuring the console window
+        /// </summary>
         public static void ConfigureConsole()
         {
             try
@@ -25,7 +28,9 @@ namespace ConsoleSnake.Engine
             Console.Clear();
             Console.Beep();
         }
-
+        /// <summary>
+        /// Called when the game is over 
+        /// </summary>
         public static void WriteGameOver()
         {
             Console.Clear();
@@ -36,6 +41,9 @@ namespace ConsoleSnake.Engine
             Environment.Exit(0);
         }
 
+        /// <summary>
+        /// Called every time when a Point needs to be written on the console
+        /// </summary>
         public static void WritePoint(int x, int y, char symbol)
         {
             try
@@ -50,6 +58,9 @@ namespace ConsoleSnake.Engine
             Console.Write(symbol);
         }
 
+        /// <summary>
+        /// Called every time the score changes
+        /// </summary>
         public static void WriteScore(int score)
         {
             Console.SetCursorPosition(2, Constants.ConsoleHeight - 2);

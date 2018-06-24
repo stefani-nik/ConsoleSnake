@@ -7,6 +7,9 @@ namespace ConsoleSnake.Engine
 {
     public static class Game
     {
+        /// <summary>
+        /// The main login of the game
+        /// </summary>
         public static void Play()
         {
             try
@@ -33,6 +36,7 @@ namespace ConsoleSnake.Engine
             int score = 0;
             ConsoleWriter.WriteScore(score);
 
+            // While the player hadnt lost the game 
             while (true)
             {
                 if (snake.IsHitTail() || walls.IsHit(snake.Head))

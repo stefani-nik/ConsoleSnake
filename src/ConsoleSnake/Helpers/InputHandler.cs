@@ -7,6 +7,10 @@ namespace ConsoleSnake.Helpers
     {
         Snake snake = Snake.Instance;
 
+        /// <summary>
+        /// Depending on the pressed key, changes the value of the movement delegte of the Snake class
+        /// </summary>
+
         public void KeyPressed(ConsoleKey key)
         {
 
