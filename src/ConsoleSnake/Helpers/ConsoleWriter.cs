@@ -7,7 +7,15 @@ namespace ConsoleSnake.Engine
     {
         public static void ConfigureConsole()
         {
-            Console.SetWindowSize(Constants.ConsoleWidth,Constants.ConsoleHeight);
+            try
+            {
+                Console.SetWindowSize(Constants.ConsoleWidth, Constants.ConsoleHeight);
+            }
+            catch(IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException("The boundries of the console window are out of range");
+            }
+            
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.SetCursorPosition(Constants.GameOverCursorPositionX, Constants.GameOverCursorPositionY);
@@ -30,7 +38,15 @@ namespace ConsoleSnake.Engine
 
         public static void WritePoint(int x, int y, char symbol)
         {
-            Console.SetCursorPosition(x, y);
+            try
+            {
+                Console.SetCursorPosition(x, y);
+            }
+            catch
+            {
+                throw new IndexOutOfRangeException("Trying to set the cursor on non-existing coordinates.");
+            }
+          
             Console.Write(symbol);
         }
 

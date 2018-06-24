@@ -7,7 +7,7 @@ namespace ConsoleSnake.Helpers
     {
         Snake snake = Snake.Instance;
 
-        public void GetKeyDirection(ConsoleKey key)
+        public void KeyPressed(ConsoleKey key)
         {
 
             if (key == ConsoleKey.LeftArrow && snake.NextMove != snake.MoveLeft)

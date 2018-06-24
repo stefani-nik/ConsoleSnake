@@ -1,5 +1,4 @@
-﻿using ConsoleSnake.Components.Contracts;
-using ConsoleSnake.Helpers;
+﻿using ConsoleSnake.Helpers;
 using System;
 using System.Collections.Generic;
 
@@ -33,14 +32,21 @@ namespace ConsoleSnake.Components
         public bool IsHit(Point withPoint)
         {
             bool isHit = false;
-            this._walls.ForEach(w =>
-            {
-                w.PointsToDraw.ForEach(p => {
-                    if (p.IsHit(withPoint))
-                        isHit = true;
+            try
+            { 
+                this._walls.ForEach(w =>
+                {
+                    w.PointsToDraw.ForEach(p => {
+                        if (p.IsHit(withPoint))
+                            isHit = true;
+                    });
                 });
-            });
-
+                
+            }
+            catch(NullReferenceException)
+            {
+                throw new NullReferenceException("Trying to access component which is still not created.");
+            }
             return isHit;
         }
 

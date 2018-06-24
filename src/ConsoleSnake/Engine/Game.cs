@@ -1,5 +1,4 @@
 ﻿using ConsoleSnake.Components;
-using ConsoleSnake.Components.Contracts;
 using ConsoleSnake.Helpers;
 using System;
 using System.Threading;
@@ -10,7 +9,15 @@ namespace ConsoleSnake.Engine
     {
         public static void Play()
         {
-            ConsoleWriter.ConfigureConsole();
+            try
+            {
+                ConsoleWriter.ConfigureConsole();
+            }
+            catch
+            {
+                throw new Exception("Unable to configure the console window with the given parameters");
+            }
+       
 
             InputHandler inputHandler = new InputHandler();
 
@@ -44,14 +51,21 @@ namespace ConsoleSnake.Engine
 
                 else
                 {
-                    snake.Move();
+                    try
+                    {
+                        snake.Move();
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        throw new IndexOutOfRangeException("Tried to reach illegal coordinates");
+                    }
                 }
 
                 Thread.Sleep(100);
 
                 if (Console.KeyAvailable)
                 {
-                    inputHandler.GetKeyDirection(Console.ReadKey().Key);
+                    inputHandler.KeyPressed(Console.ReadKey().Key);
                 }
             }
 

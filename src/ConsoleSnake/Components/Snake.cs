@@ -44,7 +44,15 @@ namespace ConsoleSnake.Components
             Point newPoint = new Point(this.Head.X, this.Head.Y, this.Head.Symbol);
             this.PointsToDraw.Add(newPoint);
 
-            this.Head.Draw();
+            try
+            {
+                this.Head.Draw();
+            }
+            catch (IndexOutOfRangeException)
+            {
+                throw new IndexOutOfRangeException("Trying to write on position out of the console");
+            }
+           
             this.NextMove.Invoke();
 
         }
