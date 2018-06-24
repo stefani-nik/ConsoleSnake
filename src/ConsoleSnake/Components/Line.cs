@@ -1,7 +1,9 @@
-﻿using ConsoleSnake.Components.LineStrategies;
+﻿using ConsoleSnake.Components.Contracts;
+using ConsoleSnake.Components.LineStrategies;
+using System;
 using System.Collections.Generic;
 
-namespace ConsoleSnake.Components.Contracts
+namespace ConsoleSnake.Components
 {
     public class Line : Figure
     {
@@ -17,8 +19,15 @@ namespace ConsoleSnake.Components.Contracts
 
             for (int x = startX; x <= endX; x++)
             {
-                Point p = lineStrategies[lineStrategy].GetPoint(x, y, symbol);
-                PointsToDraw.Add(p);
+                try
+                {
+                    Point p = lineStrategies[lineStrategy].GetPoint(x, y, symbol);
+                    PointsToDraw.Add(p);
+                }
+                catch
+                {
+                    throw new NullReferenceException("The line strategy is not recognized");
+                }
             }
         }
     }

@@ -6,6 +6,8 @@
         public const char FoodSymbol = '\u058e';
         public const int ConsoleWidth = 80;
         public const int ConsoleHeight = 25;
+        public const int WallsWidth = 78;
+        public const int WallsHeight = 23;
         public const int GameOverCursorPositionX = 20;
         public const int GameOverCursorPositionY = 12;
         public const int SnakeStartPointX = 4;

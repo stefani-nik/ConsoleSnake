@@ -1,5 +1,4 @@
 ﻿using ConsoleSnake.Components.Contracts;
-using ConsoleSnake.Enums;
 using ConsoleSnake.Helpers;
 using System;
 using System.Collections.Generic;
@@ -37,7 +36,7 @@ namespace ConsoleSnake.Components
             }  
         }
 
-        internal void Move()
+        public void Move()
         {
             this.Tail.Clear();
             this.PointsToDraw.Remove(this.Tail);
@@ -62,7 +61,7 @@ namespace ConsoleSnake.Components
             return false;
         }
 
-        internal bool Eat(Point food)
+        public bool IsHitFood(Point food)
         {
 
             if (this.Head.IsHit(food))
@@ -73,8 +72,9 @@ namespace ConsoleSnake.Components
                 this.NextMove.Invoke();
                 return true;
             }
-            else
-                return false;
+
+            return false;
+             
         }
 
         public void MoveUp()

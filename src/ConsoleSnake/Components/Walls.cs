@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ConsoleSnake.Components
 {
-    public class Walls
+    public sealed class Walls
     {
         private List<Line> _walls;
 
@@ -18,16 +18,16 @@ namespace ConsoleSnake.Components
         {
             _walls = new List<Line>()
             {
-                new Line(0, Constants.ConsoleWidth - 2, 0, '-', "horizontal"),
-                new Line(0, Constants.ConsoleWidth - 2, Constants.ConsoleHeight - 1, '-', "horizontal"),
-                new Line(0, Constants.ConsoleHeight - 1, 0, '|', "vertical"),
-                new Line(0, Constants.ConsoleHeight - 1, Constants.ConsoleWidth - 2, '|', "vertical"),
+                new Line(0, Constants.WallsWidth, 0, '-', "horizontal"),
+                new Line(0, Constants.WallsWidth, Constants.WallsHeight, '-', "horizontal"),
+                new Line(0, Constants.WallsHeight, 0, '|', "vertical"),
+                new Line(0, Constants.WallsHeight, Constants.WallsWidth, '|', "vertical"),
             };
         }
 
-        public void DrawWalls()
+        public void Draw()
         {
-            this._walls.ForEach(w => w.DrawFigure());
+            this._walls.ForEach(w => w.Draw());
         }
 
         public bool IsHit(Point withPoint)

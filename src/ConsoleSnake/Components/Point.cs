@@ -1,6 +1,6 @@
 ﻿using ConsoleSnake.Engine;
 
-namespace ConsoleSnake.Components.Contracts
+namespace ConsoleSnake.Components
 {
     public class Point
     {

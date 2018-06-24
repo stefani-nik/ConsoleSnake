@@ -23,7 +23,7 @@ namespace ConsoleSnake.Engine
             Console.Clear();
             Console.SetCursorPosition(Constants.GameOverCursorPositionX, Constants.GameOverCursorPositionY);
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("You lost . Press any key to quit the game.");
+            Console.WriteLine("You lost. Press any key to quit the game.");
             Console.ReadKey();
             Environment.Exit(0);
         }
@@ -32,6 +32,12 @@ namespace ConsoleSnake.Engine
         {
             Console.SetCursorPosition(x, y);
             Console.Write(symbol);
+        }
+
+        public static void WriteScore(int score)
+        {
+            Console.SetCursorPosition(2, Constants.ConsoleHeight - 2);
+            Console.WriteLine($"Score: {score}");
         }
 
     }

@@ -9,7 +9,7 @@ namespace ConsoleSnake.Components.Contracts
         internal List<Point> PointsToDraw { get => _pointsToDraw; set => _pointsToDraw = value; }
 
 
-        internal void DrawFigure()
+        internal void Draw()
         {
             this._pointsToDraw.ForEach(p => p.Draw());
         }

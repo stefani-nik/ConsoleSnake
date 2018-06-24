@@ -10,19 +10,19 @@ namespace ConsoleSnake.Helpers
         public void GetKeyDirection(ConsoleKey key)
         {
 
-            if (key == ConsoleKey.LeftArrow)
+            if (key == ConsoleKey.LeftArrow && snake.NextMove != snake.MoveLeft)
             {
                 snake.NextMove = snake.MoveLeft;
             }
-            else if (key == ConsoleKey.RightArrow)
+            else if (key == ConsoleKey.RightArrow && snake.NextMove != snake.MoveRight)
             {
                 snake.NextMove = snake.MoveRight;
             }
-            else if (key == ConsoleKey.DownArrow)
+            else if (key == ConsoleKey.DownArrow && snake.NextMove != snake.MoveDown)
             {
                 snake.NextMove = snake.MoveDown;
             }
-            else if (key == ConsoleKey.UpArrow)
+            else if (key == ConsoleKey.UpArrow && snake.NextMove != snake.MoveUp)
             {
                 snake.NextMove = snake.MoveUp;
             } 
