@@ -1,5 +1,4 @@
 ﻿using ConsoleSnake.Components;
-using ConsoleSnake.Enums;
 using System;
 
 namespace ConsoleSnake.Helpers
@@ -13,19 +12,19 @@ namespace ConsoleSnake.Helpers
 
             if (key == ConsoleKey.LeftArrow)
             {
-                snake.Direction = Direction.LEFT;
+                snake.NextMove = snake.MoveLeft;
             }
             else if (key == ConsoleKey.RightArrow)
             {
-                snake.Direction = Direction.RIGHT;
+                snake.NextMove = snake.MoveRight;
             }
             else if (key == ConsoleKey.DownArrow)
             {
-                snake.Direction  = Direction.DOWN;
+                snake.NextMove = snake.MoveDown;
             }
             else if (key == ConsoleKey.UpArrow)
             {
-                snake.Direction = Direction.UP;
+                snake.NextMove = snake.MoveUp;
             } 
         }
     }

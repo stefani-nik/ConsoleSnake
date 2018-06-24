@@ -6,9 +6,12 @@ using System.Collections.Generic;
 
 namespace ConsoleSnake.Components
 {
+
     public sealed class Snake : Figure
     {
-        private Direction _direction = Direction.RIGHT;
+
+        public delegate void Movement();
+
 
         private static readonly Lazy<Snake> instance =
                         new Lazy<Snake>(() => new Snake());
@@ -17,28 +20,34 @@ namespace ConsoleSnake.Components
 
         public Point Head { get; set; } = new Point(Constants.SnakeStartPointX, Constants.SnakeStartPointY, Constants.SnakeSymbol);
 
-        public Point Tail { get => this.PointsToDraw[0]; private set { } }
+        public Point Tail { get => this.PointsToDraw[0]; private set {} }
 
-        public Direction Direction { get => this._direction; set => this._direction = value; }
+        public Movement NextMove { get; set; }
 
         private Snake()
         {
             this.PointsToDraw = new List<Point>();
+            this.NextMove = new Movement(MoveRight);
 
             for (int i = 0; i < Constants.SnakeInitialLength; i++)
             {
-                PointsToDraw.Add(new Point(this.Head));
-                this.Head.Move(1, _direction);            
-            }
+                Point newPoint = new Point(this.Head.X, this.Head.Y, this.Head.Symbol);
+                this.PointsToDraw.Add(newPoint);
+                this.NextMove.Invoke();  
+            }  
         }
 
         internal void Move()
         {
             this.Tail.Clear();
             this.PointsToDraw.Remove(this.Tail);
-            this.PointsToDraw.Add(new Point(this.Head));
+
+            Point newPoint = new Point(this.Head.X, this.Head.Y, this.Head.Symbol);
+            this.PointsToDraw.Add(newPoint);
+
             this.Head.Draw();
-            this.Head.Move(1, _direction);
+            this.NextMove.Invoke();
+
         }
 
         public bool IsHitTail()
@@ -58,12 +67,34 @@ namespace ConsoleSnake.Components
 
             if (this.Head.IsHit(food))
             {
-                PointsToDraw.Add(new Point(this.Head));
-                this.Head.Move(1, _direction);
+                Point newPoint = new Point(this.Head.X, this.Head.Y, this.Head.Symbol);
+                this.PointsToDraw.Add(newPoint);
+
+                this.NextMove.Invoke();
                 return true;
             }
             else
                 return false;
+        }
+
+        public void MoveUp()
+        {
+            this.Head.Y--;
+        }
+
+        public void MoveDown()
+        {
+            this.Head.Y++;
+        }
+
+        public void MoveLeft()
+        {
+            this.Head.X--;
+        }
+
+        public void MoveRight()
+        {
+            this.Head.X++;
         }
     }
 }

@@ -1,62 +1,37 @@
-﻿using ConsoleSnake.Enums;
-using System;
+﻿using ConsoleSnake.Engine;
 
 namespace ConsoleSnake.Components.Contracts
 {
     public class Point
     {
-        public int x;
-        public int y;
-        public char sym;
+        private int _x;
+        private int _y;
+        private char _symbol;
 
-        public Point(int x, int y, char sym)
-        {
-            this.x = x;
-            this.y = y;
-            this.sym = sym;
-        }
+        public int X { get => _x; set => _x = value; }
+        public int Y { get => _y; set => _y = value; }
+        public char Symbol { get => _symbol; set => _symbol = value; }
 
-        public Point(Point p)
+        public Point(int x, int y, char symbol)
         {
-            x = p.x;
-            y = p.y;
-            sym = p.sym;
-        }
-
-        public void Move(int offset, Direction direction)
-        {
-            if (direction == Direction.RIGHT)
-            {
-                x = x + offset;
-            }
-            else if (direction == Direction.LEFT)
-            {
-                x = x - offset;
-            }
-            else if (direction == Direction.UP)
-            {
-                y = y - offset;
-            }
-            else if (direction == Direction.DOWN)
-            {
-                y = y + offset;
-            }
+            this.X = x;
+            this.Y = y;
+            this.Symbol = symbol;
         }
 
         public bool IsHit(Point p)
         {
-            return p.x == this.x && p.y == this.y;
+            return p.X == this.X && p.Y == this.Y;
         }
 
         public void Draw()
         {
-            Console.SetCursorPosition(x, y);
-            Console.Write(sym);
+            ConsoleWriter.WritePoint(this.X, this.Y, this.Symbol);
         }
 
         public void Clear()
         {
-            sym = ' ';
+            this.Symbol = ' ';
             Draw();
         }
 

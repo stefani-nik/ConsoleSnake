@@ -28,5 +28,11 @@ namespace ConsoleSnake.Engine
             Environment.Exit(0);
         }
 
+        public static void WritePoint(int x, int y, char symbol)
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write(symbol);
+        }
+
     }
 }
