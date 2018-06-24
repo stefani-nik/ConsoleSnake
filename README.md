@@ -1,2 +1,2 @@
 # ConsoleSnake
-C# simple console application // The game Snake 
+C# simple Snake console game
